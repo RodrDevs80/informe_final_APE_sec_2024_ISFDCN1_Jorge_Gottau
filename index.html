@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="https://isfdc1-sgo.infd.edu.ar/sitio/wp-content/uploads/2020/04/logo.jpg" />
+    <title>Proyecto APE Secundaria 2024</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #ec4899;
+            --accent: #14b8a6;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+            --gray: #64748b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+            max-width: 1200px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero .year {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        section:nth-child(even) {
+            background: var(--dark);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 3rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Introduction */
+        .intro-content {
+            background: rgba(99, 102, 241, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .intro-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--light);
+            opacity: 0.9;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(236, 72, 153, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .team-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .team-card .role {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card .hours {
+            color: var(--light);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Schools */
+        .schools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .school-card {
+            background: rgba(20, 184, 166, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .school-card:hover {
+            background: rgba(20, 184, 166, 0.2);
+            transform: translateX(10px);
+        }
+
+        .school-card h3 {
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .school-card .cue {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .school-card .ref {
+            color: var(--light);
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .timeline-content {
+            background: rgba(99, 102, 241, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border: 4px solid var(--darker);
+            border-radius: 50%;
+            top: 2rem;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            left: -60px;
+        }
+
+        .timeline-content .date {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .timeline-content h3 {
+            color: var(--light);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .timeline-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .timeline-content .area {
+            display: inline-block;
+            background: rgba(236, 72, 153, 0.2);
+            color: var(--secondary);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-top: 1rem;
+        }
+
+        /* Stats */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Achievements */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .achievement-item {
+            background: rgba(20, 184, 166, 0.1);
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .achievement-item:hover {
+            background: rgba(20, 184, 166, 0.2);
+            transform: translateX(10px);
+        }
+
+        .achievement-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .achievement-text {
+            color: var(--light);
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Challenges */
+        .challenges {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .challenge-item {
+            background: rgba(236, 72, 153, 0.1);
+            border-left: 4px solid var(--secondary);
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: flex;
+            align-items: start;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .challenge-item:hover {
+            background: rgba(236, 72, 153, 0.2);
+            transform: translateX(10px);
+        }
+
+        .challenge-icon {
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .challenge-text {
+            color: var(--light);
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Quote */
+        .quote-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.2));
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .quote-text {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            font-style: italic;
+            color: var(--light);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .quote-author {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer p {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        footer .institution {
+            color: var(--light);
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Scroll Button */
+        .scroll-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            box-shadow: 0 5px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .scroll-btn.visible {
+            opacity: 1;
+        }
+
+        .scroll-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.6);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                padding-left: 3rem;
+                padding-right: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -40px;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .intro-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>PROYECTO APE SECUNDARIA</h1>
+            <p class="subtitle">Acompañamiento Mutuo: Escuelas que se Ayudan</p>
+            <div class="year">RECORRIDO 2024</div>
+        </div>
+    </div>
+
+    <!-- Introduction -->
+    <section id="intro">
+        <div class="container">
+            <h2 class="section-title">Sobre el Proyecto</h2>
+            <div class="intro-content">
+                <p>Este proyecto APE Secundaria comenzó a construirse desde sus cimientos, en un ejercicio de escucha,
+                    diálogo y compromiso con las escuelas asociadas. A lo largo del año, fuimos tejiendo un entramado de
+                    experiencias, saberes y necesidades, que nos permitió delinear propuestas significativas y situadas.
+                </p>
+                <p>Esta carpeta reúne ese recorrido: las ideas iniciales, las acciones desarrolladas, las voces que se
+                    sumaron y los desafíos compartidos.</p>
+                <p><strong>Instituto Superior de Formación Docente Continua N°1 - Mons. Dr. Jorge Gottau</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team -->
+    <section id="team">
+        <div class="container">
+            <h2 class="section-title">Equipo Implicado</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <h3>Prof. Guerrero Romina</h3>
+                    <p class="role">Coordinación - Área Ciencias Sociales</p>
+                    <p class="hours">4 horas cátedra</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Tevez Mariel</h3>
+                    <p class="role">Coordinación - Evaluación - Área Lengua</p>
+                    <p class="hours">4 horas cátedra</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Cejas Emmanuel</h3>
+                    <p class="role">Educación Digital</p>
+                    <p class="hours">4 horas cátedra</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Ruiz Carlos</h3>
+                    <p class="role">Educación Digital</p>
+                    <p class="hours">4 horas cátedra</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Fereyra Tito</h3>
+                    <p class="role">Área Ciencias Sociales</p>
+                    <p class="hours">5 horas cátedra</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Contreras Magalí</h3>
+                    <p class="role">Residencia - Cs. Sociales</p>
+                    <p class="hours">Sin horas institucionales</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Ebertz Analía</h3>
+                    <p class="role">Área Ciencias Naturales-TIC</p>
+                    <p class="hours">1 hora cátedra</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Navarro Mercedes</h3>
+                    <p class="role">Área Ciencias Naturales-TIC</p>
+                    <p class="hours">3 horas cátedra</p>
+                </div>
+                <div class="team-card">
+                    <h3>Prof. Palavecino Alejandra</h3>
+                    <p class="role">Área Ciencias Naturales-TIC</p>
+                    <p class="hours">4 horas cátedra</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schools -->
+    <section id="schools">
+        <div class="container">
+            <h2 class="section-title">Escuelas Asociadas</h2>
+            <div class="schools-grid">
+                <div class="school-card">
+                    <h3>Colegio Sagrada Familia</h3>
+                    <p class="cue">CUE: 860185200</p>
+                    <p class="ref">Referente: Prof. Cañete María José</p>
+                </div>
+                <div class="school-card">
+                    <h3>Escuela Técnica N° 4</h3>
+                    <p class="cue">CUE: 8601183</p>
+                    <p class="ref">Referente: Prof. Timofiejuk Rubén</p>
+                </div>
+                <div class="school-card">
+                    <h3>Colegio Florentino Ameghino</h3>
+                    <p class="cue">CUE: 860184700</p>
+                    <p class="ref">Referente: Prof. Contreras Claudia</p>
+                </div>
+                <div class="school-card">
+                    <h3>Escuela Secundaria Homero Manzi</h3>
+                    <p class="cue">CUE: 860166900</p>
+                    <p class="ref">Referente: Prof. Pachilla Oscar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section id="stats">
+        <div class="container">
+            <h2 class="section-title">En Números</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">Actividades Realizadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Escuelas Asociadas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Docentes del Equipo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Año de Trabajo</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section id="activities">
+        <div class="container">
+            <h2 class="section-title">Recorrido de Actividades 2024</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">14 de junio de 2024</div>
+                        <h3>Presentación del Proyecto APE</h3>
+                        <p>Primer encuentro con alumnos del profesorado para generar apropiación, sentido y compromiso.
+                            Se compartieron objetivos, estrategias y el rol de los futuros docentes en el
+                            acompañamiento.</p>
+                        <span class="area">Formación Docente</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">18 de junio de 2024</div>
+                        <h3>Taller de Educación Digital</h3>
+                        <p>Exploración de tecnologías emergentes: Realidad Aumentada, Realidad Virtual e Inteligencia
+                            Artificial. Espacio de actualización y diálogo entre docentes en ejercicio y alumnos del
+                            profesorado.</p>
+                        <span class="area">TIC</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">27-28 de junio de 2024</div>
+                        <h3>Google Forms en Investigación</h3>
+                        <p>Intervención en dos jornadas sobre uso pedagógico de herramientas digitales aplicadas a
+                            ciencias naturales. Trabajo con formularios sobre impacto ambiental.</p>
+                        <span class="area">TIC + Ciencias Naturales</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">3 de septiembre de 2024</div>
+                        <h3>Taller DUA</h3>
+                        <p>Diseño Universal para el Aprendizaje aplicado a Lengua y Literatura y Ciencias Naturales.
+                            Estrategias inclusivas respetando estilos, ritmos y potencialidades de todos los alumnos.
+                        </p>
+                        <span class="area">Lengua + Ciencias Naturales</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">12-13 de septiembre de 2024</div>
+                        <h3>Procesamiento de Datos</h3>
+                        <p>Fortalecimiento del análisis de datos con Google Forms y Excel. Diseño de encuestas,
+                            recolección de información y representaciones gráficas para proyectos escolares.</p>
+                        <span class="area">TIC + Ciencias Naturales</span>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">28 de noviembre de 2024</div>
+                        <h3>Inteligencia Emocional</h3>
+                        <p>Estrategias para promover la inteligencia emocional y convivencia escolar positiva. Trabajo
+                            sobre autoconocimiento, empatía y comunicación efectiva en el aula.</p>
+                        <span class="area">Convivencia Escolar</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements">
+        <div class="container">
+            <h2 class="section-title">Logros Alcanzados</h2>
+            <div class="achievements">
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div class="achievement-text">Mejor participación de alumnos y docentes en las actividades</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div class="achievement-text">Crecimiento en la integración entre carreras y áreas disciplinares
+                    </div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div class="achievement-text">Mejora en los procesos de planificación y evaluación</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div class="achievement-text">Inclusión de nuevas tecnologías educativas (IA, herramientas
+                        digitales)</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">✓</div>
+                    <div class="achievement-text">Producción de materiales específicos para las intervenciones</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Challenges -->
+    <section id="challenges">
+        <div class="container">
+            <h2 class="section-title">Desafíos Identificados</h2>
+            <div class="challenges">
+                <div class="challenge-item">
+                    <div class="challenge-icon">⚠</div>
+                    <div class="challenge-text">Bajo nivel de respuesta en instancias de evaluación digital</div>
+                </div>
+                <div class="challenge-item">
+                    <div class="challenge-icon">⚠</div>
+                    <div class="challenge-text">Comunicación poco fluida en el equipo de docentes APE</div>
+                </div>
+                <div class="challenge-item">
+                    <div class="challenge-icon">⚠</div>
+                    <div class="challenge-text">Tiempos institucionales limitados para profundizar aplicaciones</div>
+                </div>
+                <div class="challenge-item">
+                    <div class="challenge-icon">⚠</div>
+                    <div class="challenge-text">Participación desigual y escasa devolución de algunas escuelas</div>
+                </div>
+                <div class="challenge-item">
+                    <div class="challenge-icon">⚠</div>
+                    <div class="challenge-text">Imposibilidad de hacer seguimiento posterior a los talleres</div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Projections -->
+    <section id="projections">
+        <div class="container">
+            <h2 class="section-title">Propuestas hacia 2025</h2>
+            <div class="achievements">
+                <div class="achievement-item">
+                    <div class="achievement-icon">→</div>
+                    <div class="achievement-text">Sostener el vínculo construido con las escuelas asociadas</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">→</div>
+                    <div class="achievement-text">Avanzar hacia formatos de acompañamiento más situados</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">→</div>
+                    <div class="achievement-text">Fortalecer el capital humano del instituto</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">→</div>
+                    <div class="achievement-text">Crear espacios de intercambio sostenido y repositorio pedagógico</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">→</div>
+                    <div class="achievement-text">Revisar la dinámica interna del equipo docente APE</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">→</div>
+                    <div class="achievement-text">Potenciar el rol de los residentes en las propuestas APE</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
+    <section id="quote">
+        <div class="container">
+            <div class="quote-section">
+                <p class="quote-text">"No hay acto más profundamente educativo que el de acompañar a otro a construir su
+                    camino, sin trazarle el destino."</p>
+                <p class="quote-author">Inspirado en Philippe Meirieu</p>
+            </div>
+            <div class="quote-section" style="margin-top: 2rem;">
+                <p class="quote-text">Cada encuentro fue una semilla. Algunas germinarán enseguida, otras necesitarán
+                    más tiempo y cuidado. Pero todas fueron sembradas con la convicción de que una escuela secundaria
+                    distinta es posible cuando el acompañamiento se hace con escucha, compromiso y esperanza.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p class="institution">Instituto Superior de Formación Docente Continua N°1</p>
+            <p class="institution">Mons. Dr. Jorge Gottau</p>
+            <p>Coordinadoras: Prof. Guerrero Romina - Prof. Tevez Mariel</p>
+            <p style="margin-top: 2rem; opacity: 0.6;">Proyecto APE Secundaria © 2024</p>
+            <hr style="margin-top:2rem; margin-bottom: 2rem;">
+            <p>Creación de Pagina Web: </p>
+            <p>Prof. Carlos E. Rodriguez </p>
+            <div style="display: flex; justify-content: center;flex-direction: column;">
+                <a href="https://github.com/RodrDevs80" target="_blank" style="opacity: 0.6;"><i
+                        class="fa-brands fa-github"></i> Github</a>
+                <a href="https://www.linkedin.com/in/carlos-rodriguez-developerwebjr/" target="_blank"
+                    style="opacity: 0.6;"><i class="fa-brands fa-linkedin"></i> Linkedin</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-btn" id="scrollBtn">↑</button>
+
+    <script>
+        // Scroll to top button
+        const scrollBtn = document.getElementById('scrollBtn');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollBtn.classList.add('visible');
+            } else {
+                scrollBtn.classList.remove('visible');
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate timeline items on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        timelineItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(30px)';
+            item.style.transition = 'all 0.6s ease';
+            observer.observe(item);
+        });
+
+        // Animate cards on scroll
+        const cards = document.querySelectorAll('.team-card, .school-card, .stat-card, .achievement-item, .challenge-item');
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 50);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+            cardObserver.observe(card);
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add parallax effect to hero
+        window.addEventListener('scroll', () => {
+            const hero = document.querySelector('.hero');
+            const scrolled = window.pageYOffset;
+            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // Counter animation for stats
+        const animateCounter = (element, target) => {
+            let current = 0;
+            const increment = target / 50;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 30);
+        };
+
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const target = parseInt(entry.target.textContent);
+                    animateCounter(entry.target, target);
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statNumbers.forEach(stat => {
+            statsObserver.observe(stat);
+        });
+    </script>
+    <script src="https://kit.fontawesome.com/ca5ef2b8ee.js" crossorigin="anonymous"></script>
+</body>
